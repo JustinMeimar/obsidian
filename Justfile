@@ -1,16 +1,21 @@
 
-archive:= "obsidian-vault"
+VAULT     := "obsidian-vault"
+TARBALL   := VAULT + ".tar.gz"
+ENCRYPTED := TARBALL + ".gpg"
 
-sync:
+sync KEY:
     just compress
-    just encrypt
+    just encrypt {{KEY}}
 
 compress:
-    tar -czvf {{archive}}.tar.gz ./obsidian-vault
+    tar -czvf {{TARBALL}} ./{{VAULT}}
 
-encrypt:
-    gpg -c {{archive}}.tar.gz
+decompress OUT_DIR:
+    tar -xvzf {{TARBALL}} -C {{OUT_DIR}}
 
-decrypt:
-    gpg -d {{archive}}.tar.gz.gpg > directory_name.tar.gz
+encrypt KEY:
+    gpg --batch --yes --passphrase `cat {{KEY}}` -c {{TARBALL}}
+
+decrypt KEY:
+    gpg --batch --yes --passphrase `cat {{KEY}}` -d {{ENCRYPTED}} > {{TARBALL}}
 

@@ -1,5 +1,5 @@
 
-# Advanced, High Impact, SOTA Vault Encryption Compiler
+# Obsidian Manager 
 
-This is definitely NOT file storage. This project is an advanced, SOTA encrypted file compiler, which clearly qualifies as *code*. Please see the `Justfile`. Thanks :3 
+Backup of obsidian vault. See `Justfile` 
 
