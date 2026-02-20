@@ -4,6 +4,7 @@ archive:= "obsidian-vault"
 sync:
     just compress
     just encrypt
+    gita .
     git push origin main
 
 compress:
